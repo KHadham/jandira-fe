@@ -1,11 +1,27 @@
 {
   "title": "Sign In",
+  "title2": "OTP Verification",
   "actions": {
+    "back": "Back",
     "submit": "Sign In",
+    "sendOtp": "Send OTP",
+    "verify": "Verify",
     "createAccount": "Create Account",
-    "forgotPassword": "Forgot Password?"
+    "forgotPassword": "Forgot Password?",
+    "resendOtp": "Resend OTP"
   },
   "inputs": {
+    "fullname": {
+      "label": "Fullname (Optional)",
+      "validation": {
+        "required": "Fullname is required",
+        "invalid": "Fullname is not valid",
+        "server": {
+          "emailNotExists": "Fullname does not exist",
+          "notFound": "Fullname does not exist"
+        }
+      }
+    },
     "email": {
       "label": "Email",
       "validation": {
@@ -26,7 +42,41 @@
           "incorrectPassword": "Password is not valid"
         }
       }
+    },
+    "phone": {
+      "label": "Phone Number",
+      "validation": {
+        "length": "must be exactly Phone number ",
+        "required": "Phone number is required",
+        "invalid": "Phone number is not valid",
+        "server": {
+          "userNotFound": "User with this phone not found",
+          "userAlreadyExists": "User with this phone already exists"
+        }
+      }
+    },
+    "otp": {
+      "label": "OTP Code",
+      "validation": {
+        "required": "OTP is required",
+        "server": {
+          "invalid": "The OTP code is incorrect or has expired"
+        }
+      }
     }
   },
-  "or": "OR"
+  "or": "OR",
+  "tabs": {
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "alerts": {
+    "success": "You have signed in successfully.",
+    "otpSent": "OTP has been sent successfully.",
+    "checkEmail": "Please check your email for further instructions.",
+    "checkPhone": "Please check your phone for the OTP code.",
+    "wrongOTP": "The OTP code is incorrect or has expired.",
+    "otpResent": "OTP has been resent successfully.",
+    "otpResentFailed": "Failed to resend OTP. Please try again later or change the number."
+  }
 }

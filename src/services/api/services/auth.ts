@@ -217,3 +217,45 @@ export function useAuthGetMeService() {
     [fetch]
   );
 }
+
+export type AuthPhoneRequestOtpRequest = {
+  phone: string;
+  fullName?: string;
+};
+
+export type AuthPhoneRequestOtpResponse = void;
+
+export function useAuthPhoneRequestOtpService() {
+  const fetchBase = useFetch();
+
+  return useCallback(
+    (data: AuthPhoneRequestOtpRequest, requestConfig?: RequestConfigType) => {
+      return fetchBase(`${API_URL}/v1/auth/phone/request-otp`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        ...requestConfig,
+      }).then(wrapperFetchJsonResponse<AuthPhoneRequestOtpResponse>);
+    },
+    [fetchBase]
+  );
+}
+
+export type AuthPhoneVerifyOtpRequest = {
+  phone: string;
+  otp: string;
+};
+
+export function useAuthPhoneVerifyOtpService() {
+  const fetchBase = useFetch();
+
+  return useCallback(
+    (data: AuthPhoneVerifyOtpRequest, requestConfig?: RequestConfigType) => {
+      return fetchBase(`${API_URL}/v1/auth/phone/verify-otp`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        ...requestConfig,
+      }).then(wrapperFetchJsonResponse<AuthLoginResponse>); // Re-using AuthLoginResponse
+    },
+    [fetchBase]
+  );
+}
